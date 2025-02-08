@@ -1,4 +1,4 @@
-# Deploying a Flask API
+# Deploying a Flask API 
 
 This is the project starter repo for the course Server Deployment, Containerization, and Testing.
 
@@ -11,7 +11,7 @@ The Flask app that will be used for this project consists of a simple API with t
 - `GET '/contents'`: This requires a valid JWT, and returns the un-encrpyted contents of that token. 
 
 The app relies on a secret set as the environment variable `JWT_SECRET` to produce a JWT. The built-in Flask server is adequate for local development, but not production, so you will be using the production-ready [Gunicorn](https://gunicorn.org/) server when deploying the app.
-
+....
 
 
 ## Prerequisites

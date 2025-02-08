@@ -17,7 +17,7 @@ Parameters:
   GitSourceRepo:
     Type: String
     Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
-    Default: cd0157-Server-Deployment-and-Containerization
+    Default: Flask-app-containerization
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository name
@@ -40,7 +40,7 @@ Parameters:
 
   GitHubUser:
     Type: String
-    Default: SudKul
+    Default: anunita
     Description: GitHub username or organization
     MinLength: 3
     MaxLength: 100
@@ -120,6 +120,7 @@ Resources:
           import json
           import boto3
           import urllib3
+          import cfnresponse
           def handler(event, context):
             response = {
               'Status': 'SUCCESS',
@@ -130,7 +131,9 @@ Resources:
               'LogicalResourceId': event['LogicalResourceId'],
               'Data': {"Message": "Resource creation successful!"},
             }
-          
+            
+            cfnresponse.send(event, context, cfnresponse.SUCCESS, response, context.log_stream_name)
+
             http = urllib3.PoolManager()
             client = boto3.client('iam')
             try:
